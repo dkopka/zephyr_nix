@@ -1,0 +1,24 @@
+# Zephyr build directory
+build/
+
+# Build artifacts
+*.elf
+*.hex
+*.bin
+*.map
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Nix
+result
+result-*
+
+# Editor files
+*.swp
+*~
+.vscode/
+
+# Clang cache
+.cache/
