@@ -1,19 +1,35 @@
 manifest:
-  version: "1.0"
+  version: "0.13"
 
   remotes:
-    - name: zephyrproject-rtos
-      url-base: https://github.com/zephyrproject-rtos
+    - name: ncs
+      url-base: https://github.com/nrfconnect
+
+  defaults:
+    remote: ncs
 
   projects:
-    - name: zephyr
-      remote: zephyrproject-rtos
-      revision: v4.2.0
+    - name: nrf
+      remote: ncs
+      repo-path: sdk-nrf
+      revision: v3.1.1
       import:
         name-allowlist:
+          - zephyr
+          - mcuboot
+          - nrfxlib
+          - mbedtls
+          - trusted-firmware-m
           - cmsis
           - cmsis_6
           - hal_nordic
+          - matter
+          - nrf_wifi
+          - openthread
+          - mbedtls
+          - nrf_security
+          - oberon-psa-crypto
+          - hostap
 
   self:
     path: .

@@ -11,8 +11,10 @@ A reproducible Zephyr RTOS project using Nix for dependency management.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/dkopka/blinky_zephyr_nix.git
-   cd blinky_zephyr_nix
+   mkdir zephyr_workspace
+   cd zephyr_workspace
+   git clone https://github.com/dkopka/zephyr_nix.git
+   cd zephyr_nix
    ```
 
 2. **Enter the development environment:**
@@ -87,11 +89,12 @@ nix flake update
 - **Clean**: No global installation pollution
 - **Locked Dependencies**: `flake.lock` ensures exact package versions
 
-## Updating Zephyr Version
+## Updating nRF Connect SDK Version
 
 1. Update the `revision` in `west.yml`:
-   ```yaml
-   revision: v3.6.0  # New version
+   ```diff
+   -  revision: v3.1.1
+   +  revision: v3.1.2
    ```
 
 2. Update west dependencies:
@@ -102,14 +105,14 @@ nix flake update
 3. Commit the changes:
    ```bash
    git add west.yml
-   git commit -m "Update Zephyr to v3.6.0"
+   git commit -m "Update nRF Connect SDK to v3.1.2"
    ```
 
 ## Customization
 
 ### Adding New Dependencies
 
-1. **Python packages**: Add to `pythonEnvBase` in `flake.nix`
+1. **Python packages**: Add to `pythonEnv*` in `flake.nix`
 2. **System packages**: Add to `buildInputs` in `flake.nix`
 3. **Zephyr modules**: Add to `projects` in `west.yml`
 
@@ -131,7 +134,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 - Make sure you're in the Nix shell: `nix develop`
 
 **Build errors after updating**
-- Try a clean build: `west build --pristine`
+- Try a clean build: `west build --pristine --board nrf52840dk/nrf52840`
 
 **Permission denied on /dev/ttyACM0**
 - Add your user to the `dialout` group (Linux)
@@ -139,6 +142,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
 ## Documentation
 
+- [nRF Connect SDK](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/index.html)
 - [Zephyr Documentation](https://docs.zephyrproject.org/)
 - [West Documentation](https://docs.zephyrproject.org/latest/develop/west/index.html)
 - [Nix Documentation](https://nixos.org/manual/nix/)
